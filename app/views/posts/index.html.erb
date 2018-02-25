@@ -1,29 +1,22 @@
-<p id="notice"><%= notice %></p>
+<main id="content" role="main" class="">
+  <p id="notice"><%= notice %></p>
+  <% @posts.each do |post| %>
+  <article class="recipe-article">
+    <header>
+      <span class="ampstart-subtitle block px3 pt2 mb2">FOOD</span>
+      <h1 class="mb1 px3"><%= post.title %></h1>
 
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+      <!-- Start byline -->
+      <div class="ampstart-byline clearfix mb4 px3 h5">
+        <time class="ampstart-byline-pubdate block bold my1" datetime="2016-12-13"><%= post.updated_at.strftime('%B %d, %Y') %></time>
+      </div>
+      <!-- End byline -->
+      <amp-img src="../img/blog/spritzer.jpg" width="1280" height="853" layout="responsive" alt="The final spritzer" class="mb4 mx3"></amp-img>
+    </header>
+    <p class="mb4 px3"><%= post.content %></p>
+  </article>
+  <%= link_to 'Edit', edit_post_path(post) %>
+  <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  <%= link_to 'New Post', new_post_path %>
+</main>
